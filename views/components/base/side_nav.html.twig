@@ -1,0 +1,55 @@
+<!-- partial:partials/_sidebar.html -->
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        <li class="nav-item nav-profile">
+            <div class="nav-link d-flex pl-4">
+                <div class="profile-name">
+                    <p class="name">{{ app.user.getFullName }}</p>
+                    <p class="designation text-primary">20,000 Subscribers Remaining</p>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a id="mf-nav-link-dashboard" class="nav-link" href="{{ path('homepage') }}">
+                <i class="fa fa-dashboard menu-icon text-primary"></i>
+                <span class="menu-title">Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a id="mf-nav-link-funnels" class="nav-link" href="{{ path('funnels') }}">
+                <i class="fa fa-filter menu-icon text-primary"></i>
+                <span class="menu-title">Funnel Builder</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a id="mf-nav-link-templates" class="nav-link" href="{{ path('email_templates') }}">
+                <i class="fa fa-send menu-icon text-primary"></i>
+                <span class="menu-title">Email Builder</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a id="mf-nav-link-lists" class="nav-link" href="{{ path('email_lists') }}">
+                <i class="fa fa-list menu-icon text-primary"></i>
+                <span class="menu-title">Email Lists</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a id="mf-nav-link-broadcasts" class="nav-link" href="{{ path('broadcasts') }}">
+                <i class="fa fa-bullhorn menu-icon text-primary"></i>
+                <span class="menu-title">Broadcasts</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a id="mf-nav-link-account" class="nav-link" href="{{ path('my_account') }}">
+                <i class="fa fa-user menu-icon text-primary"></i>
+                <span class="menu-title">My Account</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a id="mf-nav-link-support" class="nav-link" href="#">
+                <i class="fa fa-phone menu-icon text-primary"></i>
+                <span class="menu-title">Support</span>
+            </a>
+        </li>
+    </ul>
+</nav>

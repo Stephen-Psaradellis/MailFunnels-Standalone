@@ -1,0 +1,244 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Dashboard{% endblock %}
+
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-3 col-sm-6 mb-4 mb-md-0 border-right-md d-flex justify-content-between justify-content-md-center">
+                            <a href="{{ path('funnels') }}" class="text-dec-none">
+                                <div class="wrapper d-flex align-items-center justify-content-center">
+                                    <div class="btn social-btn btn-twitter btn-rounded d-inline-block m-t-0"><i class="fa fa-filter menu-icon text-secondary"></i></div>
+                                    <div class="wrapper d-flex flex-column ml-4 m-b-0" style="margin-top: 5px;">
+                                        <p class="m-b-0 text-mf-blue text--2-5x text-bold lh-1">{{ funnelLinks | length }}</p>
+                                        <p class="text-semibold m-t-0 lh-1">Funnels</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-3 col-sm-6 mb-4 mb-md-0 border-right-md d-flex justify-content-between justify-content-md-center">
+                            <a href="{{ path('email_lists') }}" class="text-dec-none">
+                                <div class="wrapper d-flex align-items-center justify-content-center">
+                                    <div class="btn social-btn btn-twitter btn-rounded d-inline-block m-t-0"><i class="fa fa-list menu-icon text-secondary"></i></div>
+                                    <div class="wrapper d-flex flex-column ml-4 m-b-0" style="margin-top: 5px;">
+                                        <p class="m-b-0 text-mf-blue text--2-5x text-bold lh-1">{{ emailListLinks | length }}</p>
+                                        <p class="text-semibold m-t-0 lh-1">Email Lists</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-3 col-sm-6 mb-4 mb-md-0 border-right-md d-flex justify-content-between justify-content-md-center">
+                            <a href="{{ path('email_templates') }}" class="text-dec-none">
+                                <div class="wrapper d-flex align-items-center justify-content-center">
+                                    <div class="btn social-btn btn-twitter btn-rounded d-inline-block m-t-0"><i class="fa fa-send menu-icon text-secondary"></i></div>
+                                    <div class="wrapper d-flex flex-column ml-4 m-b-0" style="margin-top: 5px;">
+                                        <p class="m-b-0 text-mf-blue text--2-5x text-bold lh-1">{{ templateLinks | length }}</p>
+                                        <p class="text-semibold m-t-0 lh-1">Templates</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-3 col-sm-6 d-flex justify-content-between justify-content-md-center">
+                            <a href="{{ path('email_lists') }}" class="text-dec-none">
+                                <div class="wrapper d-flex align-items-center justify-content-center">
+                                    <div class="btn social-btn btn-twitter btn-rounded d-inline-block m-t-0"><i class="fa fa-users menu-icon text-secondary"></i></div>
+                                    <div class="wrapper d-flex flex-column ml-4 m-b-0" style="margin-top: 5px;">
+                                        <p class="m-b-0 text-mf-blue text--2-5x text-bold lh-1">{{ subscriberLinks | length }}</p>
+                                        <p class="text-semibold m-t-0 lh-1">Subscribers</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 grid-margin">
+        {% if app.user.shopifyIntegration %}
+            <div class="card card-inverse-primary pad-sides">
+                <div class="card-body">
+                    <p class="text-center mb-4">Welcome back, <b>{{ app.user.firstName }}</b>! We're making sure your MailFunnels account is up to date.</p>
+                    <div id="integration-check-loader" class="load7">
+                        <h5 id="integration-check-text" class="text-center">Retrieving Integrations...</h5>
+                        <div class="loader text-primary"></div>
+                    </div>
+                    <div id="integration-check-success" class="text-center" style="display: none;">
+                        <i class="fa fa-check-circle text-primary text--4x mb-1"></i>
+                        <h5 class="text-center">Everything's up to date!</h5>
+                    </div>
+                    <div id="integration-check-error" class="text-center" style="display: none;">
+                        <h5 class="text-center">Uh Oh... We had some trouble connecting to Shopify</h5>
+                        <a class="btn btn-primary icon-btn" href="{{ path('integration_shopify_resolve') }}"><i class="mf-icon-shopify"></i> Resolve Shopify Issues</a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="card card-inverse-primary pad-sides text-center">
+                <div class="card-body">
+                    <p class="mb-2">Heads up, <b>{{ app.user.firstName }}</b>! It looks like you need to finish setting up your account. Integrate your MailFunnels with your Shopify store now for automated email campaigns!</p>
+                    <button class="btn btn-primary icon-btn" data-toggle="modal" data-target="#integrate-shopify-modal"><i class="mf-icon-shopify"></i> Integrate with Shopify</button>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="row">
+
+        <div class="col-12 col-md-7 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body pad-none">
+                    <h4 class="card-title">Funnel Performance</h4>
+                    <div class="table-responsive">
+                        <table class="table pad-none" style="padding-bottom: 1em !important;">
+                            <tbody>
+                            <tr>
+                                {#<th>Funnel</th>#}
+                                {#<th>Emails Sent</th>#}
+                                {#<th>Revenue</th>#}
+                            </tr>
+                            {% for link in funnelLinks %}
+                                <tr class="table-row-white table-row-hover-blue">
+                                    <td style="width: 35%">
+                                        <div class="d-flex align-items-center">
+                                            <div class="">
+                                                <a href="{{ path('funnel_builder', {funnelUserLinkID: link.id}) }}"><p class="mb-1 text-semibold">{{ link.funnel.name }}</p></a>
+                                                <small class="text-muted text-mf-blue">{{ link.funnel.getHookString }}</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="width: 35%;"><canvas id="areaChart_{{ link.funnel.id }}" width="230" height="50" class="chartjs-render-monitor"></canvas></td>
+                                    <td class="text-center" style="width: 30%;"><strong>$0.00</strong></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-5 grid-margin stretch-card">
+
+            <div class="card">
+                <div class="card-body pad-none">
+                    <h4 class="card-title" style="padding-left: 1.2em; padding-top: 1.2em;">Daily Statistics</h4>
+                    <table class="table table-striped text-center">
+                        <tbody>
+                        {#<tr class="bg-white">#}
+                        {#<th >Stat</th>#}
+                        {#<th ></th>#}
+                        {#<th>%</th>#}
+                        {#</tr>#}
+                        <tr>
+                            <td style="width: 30%;">New Subscribers:</td>
+                            <td style="width: 40%;">
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td>Unsubscribers:</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Emails Sent:</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td>32</td>
+                        </tr>
+                        <tr>
+                            <td>Emails Opened:</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td>25</td>
+                        </tr>
+                        <tr>
+                            <td>Emails Clicked:</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td>42</td>
+                        </tr>
+                        <tr>
+                            <td>Revenue:</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td>$ 123.21</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block modals %}
+    <!-- SHOPIFY INTEGRATE MODAL -->
+    <div id="integrate-shopify-modal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Integrate with Shopify</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+
+                <div class="modal-body pad-none pad-sides">
+                    <p>Enter your Shopify store domain below</p>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Shop Name</label>
+                        <input id="integrate-shopify-domain" type="text" class="form-control" placeholder="my-store.myshopify.com">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="confirm-integrate-store" class="btn btn-primary">Integrate Store</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- END SHOPIFY INTEGRATE MODAL -->
+{% endblock %}
+
+
+{% block javascripts %}
+
+
+    <script src="{{ asset('js/pearl/sparkline.js') }}"></script>
+    <script src="{{ asset('js/pearl/dashboard.js') }}"></script>
+    <script src="{{ asset('js/pages/Dashboard/dashboard.js') }}"></script>
+{% endblock %}
+
+

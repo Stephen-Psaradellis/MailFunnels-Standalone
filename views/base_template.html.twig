@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MailFunnels | {% block title %}{% endblock %}</title>
+
+    <script src="{{ asset('mf-v1/plugins/js/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('mf-v1/plugins/js/jquery-ui.min.js') }}" type="text/javascript"></script>
+    <link href='//fonts.googleapis.com/css?family=Raleway:500,900,200' rel='stylesheet' type='text/css'>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{{ asset('plugins/css/vendor.bundle.base.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/css/vendor.bundle.addons.css') }}">
+
+    <!--<link href="/template_builder/assets/minimalist-basic/content.css" rel="stylesheet" type="text/css" />-->
+    <link href="{{ asset('builder_assets/template_builder/assets/email_style_1.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('builder_assets/contentbuilder/contentbuilder.css') }}" rel="stylesheet" type="text/css" />
+    <script src="{{ asset('builder_assets/contentbuilder/contentbuilder.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/pages/EmailTemplates/template_builder.js') }}"></script>
+
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/mf-style.css') }}">
+
+
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+
+
+    {% block stylesheets %}{% endblock %}
+
+</head>
+
+
+<body>
+
+
+{% block body %}{% endblock %}
+
+
+
+<!-- Custom js for this page-->
+{% block javascripts %}{% endblock %}
+<!-- End custom js for this page-->
+
+</body>
+
+</html>

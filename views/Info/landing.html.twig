@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MailFunnels | Email Automation</title>
+
+    <script src="{{ asset('landing_assets/js/jquery.min.js') }}"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('landing_assets/css/bootstrap.min.css') }}">
+
+    <!-- Google Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Montserrat:700%7COpen+Sans:400,600" rel="stylesheet">
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="{{ asset('landing_assets/css/iconsmind.css') }}">
+    <link rel="stylesheet" href="{{ asset('landing_assets/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('landing_assets/css/socicons.css') }}">
+    <link rel="stylesheet" href="{{ asset('landing_assets/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('landing_assets/css/mf-landing.css') }}">
+
+    <!-- Intercom -->
+    <script>
+        window.intercomSettings = {
+            app_id: "a0xeo67y",
+            email: "customer@example.com", // Email address
+            user_hash: "INSERT_HMAC_VALUE_HERE" // HMAC using SHA-256
+        };
+    </script>
+    <script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/a0xeo67y';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script></head>
+<script>
+        $(function () {
+            /**
+             * Open Popup
+             */
+            $( document ).on('click', '.mf-btn-pricing',  function (e) {
+                e.preventDefault();
+                $('#main-popup').fadeIn(function () {
+                    $(this).addClass('opened');
+                });
+            });
+
+            $( document ).on('click', '.btn-start a',  function (e) {
+                e.preventDefault();
+                $('#free-popup').fadeIn(function () {
+                    var formID = 'c4e9550020cb631afdcc4caec8493478';
+                    var $this = $( this );
+
+                    $this.addClass('opened');
+                    $this.find( '.sub__current-val' ).empty().append( '500 Subscribers' );
+                    $this.find( '.pricing__current-val' ).empty().append( 'Free' );
+                    jQuery( '.popup__body > form' ).attr( 'id', 'inf_form_' + formID ).attr( 'action', 'https://gv373.infusionsoft.com/app/form/process/' + formID );
+                    $this.find( '.popup__form' ).css( 'display', 'block' );
+                });
+            });
+
+            /**
+             * Close Popup
+             */
+            $('.popup, .popup__cancel').on('click', function (e) {
+                if( e.target === this ) {
+                    e.preventDefault();
+                    $('.popup').removeClass('opened');
+
+                    setTimeout(function () {
+                        $('.popup').fadeOut();
+                    }, 300);
+                }
+            });
+
+            $('.question__toggle').click(function (e) {
+                e.preventDefault();
+                $(this).toggleClass('opened');
+                if ($(this).hasClass('opened')) {
+                    $(this).children('.minus').css({'display':'block'});
+                    $(this).children('.plus').css({'display':'none'});
+                }else {
+                    $(this).children('.minus').css({'display':'none'});
+                    $(this).children('.plus').css({'display':'block'});
+                }
+
+                $(this).next().slideToggle();
+            });
+        });
+</script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-101331295-3', 'auto');
+    ga('send', 'pageview');
+</script>
+<!-- Facebook Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1952998978310101');
+    fbq('track', 'PageView');
+</script>
+<noscript>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1952998978310101&ev=PageView&noscript=1"/>
+</noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+<body>
+
+<main id="main" class="main main-4">
+    <div class="gradient"></div>
+    <nav class="navbar navbar-1 navbar-expand-lg navbar-light justify-content-center">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{{ asset('images/logos/mf-logo-text-white.png') }}" alt="" class="light">
+                <img src="{{ asset('images/logos/mf_logo_text.png') }}" alt="" class="dark">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto fill-flex justify-content-center">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#home" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tour">Tour</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pricing">Pricing</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto justify-content-end align-items-start align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link__cta rounded" href="{{ path('fos_user_security_login') }}">Login/Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="home" class="main-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+                    <h1 class="main-content__title mb-3 mb-lg-4 h2">Increase Your Sales and Have the Most Powerful Automated Campaigns Setup Within Minutes</h1>
+                    <p class="main-content__lead lead mb-4">Start your free trial today</p>
+                    <a href="#" class="btn btn--green btn--lg mb-0 mt-4 d-inline-flex align-items-center">Get Started Now<i class="icon icon-Right ml-2"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img src="{{ asset('landing_assets/images/hero-illustration-5.png') }}" alt="" class="img-fluid hero-illustration">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-layer">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="0,0 50,100 100,0 100,100 0,100"></polygon></svg>
+    </div>
+</main>
+
+<section id="services" class="services services-3 section section--padding">
+    <div class="container">
+        <div class="row">
+            <div class="preamble col-lg-8 offset-lg-2">
+                <h3 class="title">Email Marketing Has Finally Been Made Easy</h3>
+                <p class="lead">Welcome to MailFunnels, the best way for anyone to dominate email marketing.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="service col-lg-4 mb-5 mb-lg-0">
+                <i class="service__icon icon icon--lg icon-Hipster-Men icon--color d-flex"></i>
+                <h4 class="service__header">Skyrocket Sales</h4>
+                <p class="service__text pr-4">
+                    You're setup for nothing short of success. Once you sign up for MailFunnels you can plug & play with our high converting email templates that will allow you to have a variety of campaigns setup within minutes.             </p>
+                <ul class="service__list list-unstyled mb-0">
+                    <li class="d-flex align-items-center"><i class="icon icon-Right mr-3"></i>One Click Broadcasts</li>
+                    <li class="d-flex align-items-center"><i class="icon icon-Right mr-3"></i>Seamless Cart Abandonment Series</li>
+                    <li class="d-flex align-items-center"><i class="icon icon-Right mr-3"></i>High ROI Post Sales Sequences</li>
+                    <li class="d-flex align-items-center"><i class="icon icon-Right mr-3"></i>Win Back Campaigns</li>
+                </ul>
+            </div>
+            <div class="service col-lg-4 mb-5 mb-lg-0">
+                <i class="service__icon icon icon--lg icon-Atom icon--color d-flex"></i>
+                <h4 class="service__header">Analytics & Segmentation</h4>
+                <p class="service__text pr-4">
+                    You'll finally know more than ever about your customers including what they bought, how much their worth, and how you can earn even more from them. Live analytics and tracking will translate all of the intricate details about your business and turn it into more sales for you!
+                </p>
+                <ul class="service__list list-unstyled mb-0">
+                    <li class="d-flex align-items-center"><i class="icon icon-Right mr-3"></i>Segment Customers By Product</li>
+                    <li class="d-flex align-items-center"><i class="icon icon-Right mr-3"></i>Build One Massive List</li>
+                    <li class="d-flex align-items-center"><i class="icon icon-Right mr-3"></i>LTV Tracking</li>
+                    <li class="d-flex align-items-center"><i class="icon icon-Right mr-3"></i>Adaptive Customer Profiles</li>
+                </ul>
+            </div>
+            <div class="service col-lg-4">
+                <i class="service__icon icon icon--lg icon-Paypal icon--color d-flex"></i>
+                <h4 class="service__header">Simple to Use</h4>
+                <p class="service__text pr-4">
+                    Navigate MailFunnels with ease and start building your mail campaigns in under 5 minutes from now. Seamlessly build profit driving email funnels with our drag and drop email builder.
+                </p>
+                <ul class="service__list list-unstyled mb-0">
+                    <li class="d-flex align-items-center"><i class="icon icon-Right mr-3"></i>Extremely User Friendly</li>
+                    <li class="d-flex align-items-center"><i class="icon icon-Right mr-3"></i>Done For You Templates</li>
+                    <li class="d-flex align-items-center"><i class="icon icon-Right mr-3"></i>Drag and Drop Email Builder</li>
+                    <li class="d-flex align-items-center"><i class="icon icon-Right mr-3"></i>Comprehensive Click To Sale Tracking</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="tour" class="tour-4 section section--gradient__2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 left-side order-2 order-lg-1">
+                <div class="preamble preamble--light text-left">
+                    <h3 class="title">Take a Tour of MailFunnels</h3>
+                    <p class="lead">Intuitive email marketing has finally met results and automation.</p>
+                </div>
+                <nav>
+                    <div class="nav nav-tabs tour__tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active d-flex align-items-center mb-4 active show" id="nav-email-tab" data-toggle="tab" href="#nav-email" role="tab" aria-selected="true">
+                            <i class="icon icon-Sidebar-Window icon--md"></i>
+                            <div>
+                                <h5 class="header">Automated Email Campaigns</h5>
+                                <p class="pr-4">Skyrocket your store sales on complete autopilot in a matter of minutes.</p>
+                            </div>
+                        </a>
+                        <a class="nav-item nav-link d-flex align-items-center" id="nav-builder-tab" data-toggle="tab" href="#nav-builder" role="tab" aria-selected="false">
+                            <i class="icon icon-Big-Data icon--md"></i>
+                            <div>
+                                <h5 class="header">Dynamic Funnel Builder</h5>
+                                <p class="pr-4">Drag & Drop your way to more sales without spending thousands on ads.</p>
+                            </div>
+                        </a>
+                        <a class="nav-item nav-link d-flex align-items-center" id="nav-analytics-tab" data-toggle="tab" href="#nav-analytics" role="tab" aria-selected="false">
+                            <i class="icon icon-Sidebar-Window icon--md"></i>
+                            <div>
+                                <h5 class="header">Real Time Analytics</h5>
+                                <p class="pr-4">MailFunnels makes sure you are up to date with real time analytics on your campaigns</p>
+                            </div>
+                        </a>
+                        <a class="nav-item nav-link d-flex align-items-center" id="nav-broadcasts-tab" data-toggle="tab" href="#nav-broadcasts" role="tab" aria-selected="false">
+                            <i class="icon icon-Big-Data icon--md"></i>
+                            <div>
+                                <h5 class="header">Broadcasts</h5>
+                                <p class="pr-4">Email EVERYONE In 1 Click... We wanted to make sure you are able to contact EVERYONE at ANY given time.</p>
+                            </div>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-lg-6 right-side order-1 order-lg-2">
+                <!--<img src="./landing_assets/images/macbook2.png" alt="" class="tour__macbook">-->
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade active show" id="nav-email" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <img src="{{ asset('landing_assets/images/screen-funnels.png') }}" alt="" class="tour__macbook mf-tour-img">
+                    </div>
+                    <div class="tab-pane fade" id="nav-builder" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <img src="{{ asset('landing_assets/images/screen-funnel-builder.png') }}" alt="" class="tour__macbook mf-tour-img">
+                    </div>
+                    <div class="tab-pane fade" id="nav-analytics" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <img src="{{ asset('landing_assets/images/screen-dash.png') }}" alt="" class="tour__macbook mf-tour-img">
+                    </div>
+                    <div class="tab-pane fade" id="nav-broadcasts" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <img src="{{ asset('landing_assets/images/screen-broadcast.png') }}" alt="" class="tour__macbook mf-tour-img">
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="features" class="features-6 section section--padding section--gradient__4">
+    <div class="container">
+        <div class="row">
+            <div class="preamble col-lg-8 offset-lg-2">
+                <h3 class="title">The All-In-One Solution To Earning More On Your Store</h3>
+                <p class="lead">We seamlessly integrate with your Shopify store, providing enterprise level email marketing for users of any skill set.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 text-center feature mb-5 mb-lg-0">
+                <img src="{{ asset('landing_assets/images/tour-3.png') }}" alt="" class="feature__image img-fluid">
+                <h4 class="mb-3">Complete Solution</h4>
+                <p class="pr-4 pl-4">Whether you need to recover more abandoned carts, increase the LTV of your customers, or send promotional email broadcasts, we have you covered.</p>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="{{ asset('landing_assets/images/tour-4.png') }}" alt="" class="feature__image img-fluid">
+                <h4 class="mb-3">Beginner Friendly Software</h4>
+                <p class="pr-4 pl-4">You don't need to be an "email guru" to earn more with MailFunnels. Upon sign up, you'll receive a free 15 minute kickstarter call giving you complete email templates and hand guidance to getting your first funnel active.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section--padding">
+
+    <section id="clients" class="clients-3 section">
+        <div class="container">
+            <div class="row">
+                <div class="preamble col-lg-8 offset-lg-2">
+                    <h3 class="title">Proven Results & Trusted By The Best</h3>
+                    <p class="lead">No worries, you'll be joining a tight knit community of people who also love seeing astounding results with their online business.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials-5 section">
+        <div class="container">
+            <div class="row justify-content-center position-relative">
+                <div class="d-none d-lg-flex testimonials__button testimonials__prev-button">
+                    <svg viewBox="0 0 100 100"><path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" class="arrow"></path></svg>            </div>
+                <div class="d-none d-lg-flex testimonials__button testimonials__next-button">
+                    <svg viewBox="0 0 100 100"><path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" class="arrow" transform="translate(100, 100) rotate(180) "></path></svg>            </div>
+                <div class="owl-carousel owl-theme">
+                    <div class="d-block d-md-flex justify-content-center">
+                        <div class="col-lg-2 col-md-3 text-center text-md-left mb-4 mb-md-0">
+                            <img src="{{ asset('landing_assets/images/tour-3.png') }}" alt="" class="img-fluid blockquote__avatar">
+                        </div>
+                        <div class="col-lg-7 col-md-9">
+                            <blockquote class="blockquote mb-0">
+                                <p class="mb-0">"After using quite a few other email softwares I have not had anything more easy to integrate with my Shopify store. With the layout I was able to accurately track my ROI and an overall growth of 87% of customer value over the last 3 months!"</p>
+                                <footer>
+                                    <h5 class="mb-0 mt-4">— Jake Willis</h5>
+                                    <p class="mb-0">eCommerce Store Owner</p>
+                                </footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                    <div class="d-block d-md-flex justify-content-center">
+                        <div class="col-lg-2 col-md-3 text-center text-md-left mb-4 mb-md-0">
+                            <img src="{{ asset('landing_assets/images/tour-4.png') }}" alt="" class="img-fluid blockquote__avatar">
+                        </div>
+                        <div class="col-lg-7 col-md-9">
+                            <blockquote class="blockquote mb-0">
+                                <p class="mb-0">"MailFunnels has given me the opportunity to close sales with my Shopify store like no other software out there... It's super easy to navigate and extremely user friendly. I'm proud to say I'm a part of the MailFunnels community! This app took my store to the next level!"</p>
+                                <footer>
+                                    <h5 class="mb-0 mt-4">— Mike Ambrose</h5>
+                                    <p class="mb-0">Founder, Strategic Holdings Inc.</p>
+                                </footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+
+
+<section id="pricing" class="section section--padding__top">
+    <div class="container">
+        <div class="row">
+            <div class="preamble preamble--light col-lg-8 offset-lg-2">
+                <h3 class="title">Pricing</h3>
+                <p class="lead">Start your email funnels and cranking out sales today for 100% free for the next 14 days!</p>
+            </div>
+        </div>
+        <div class="wrap">
+                <div class="slider-wrap">
+                    <script type="text/javascript">
+                        // JSON pricing table in the format of <number_of_contacts> : <monthly_price>
+                        var pricingTable = {
+                            0: 0,
+                            1000: 1000,
+                            2000: 2000,
+                            4000: 4000,
+                            8000: 8000,
+                            12000: 12000,
+                            20000: 20000,
+                            35000: 35000
+                        };
+
+                        document.addEventListener('DOMContentLoaded', function(event) {
+                            var pricingSlider = document.querySelector('#pricing-slider'),
+                                pricingSliderTootip = pricingSlider.querySelector('.noUi-tooltip'),
+                                submitBtn = document.getElementById('show');
+
+                            var tooltipContainer = document.createElement('div');
+
+                            tooltipContainer.className = 'enterprise';
+
+                            pricingSlider.noUiSlider.pips({
+                                mode: 'values',
+                                values: [0, 1000, 2000, 4000, 8000, 12000, 20000, 35000],
+                                format: wNumb({
+                                    thousand: ','
+                                })
+                            });
+
+                            pricingSlider.noUiSlider.on('update', function(){
+                                if (arguments[2][0] == 0) {
+                                    pricingSliderTootip.classList.add('hide-tooltip-content');
+                                    tooltipContainer.classList.remove('hidden');
+//                                submitBtn.disabled = true;
+                                    $("#sign-up-box").hide();
+                                    $("#enterprise-account-box").show();
+                                } else {
+                                    pricingSliderTootip.classList.remove('hide-tooltip-content');
+                                    tooltipContainer.classList.add('hidden');
+//                                submitBtn.disabled = false;
+                                    $("#sign-up-box").show();
+                                    $("#enterprise-account-box").hide();
+                                }
+                                pricingSliderTootip.appendChild(tooltipContainer);
+                                tooltipContainer.innerHTML = '<a href="https://google.com">Free Trial</a>';
+                            });
+
+                            $('.noUi-marker').remove();
+
+                        });
+
+                        // percent discount when annual subscribe
+                        var annual_discount = 15;
+
+                        // default value when range slider initialized
+                        var default_contacts_num = 1000;
+
+                        // if (window.location.protocol != "https:" && window.location.host != "localhost:8081") {
+                        //     window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
+                        // }
+                    </script>
+                    <div class="pricing-slider-wrapper">
+                        <div id="pricing-slider"></div>
+                        <span class="range right">Free Trial</span>
+                    </div>
+                </div>
+                <p class="pricing__current-val">$9.99/-</p>
+                <a href="#" class="btn btn--green btn--lg mb-0 mt-4 d-inline-flex align-items-center mf-btn-pricing">Start Your Membership Now</a>
+                {#<a href="index.html#" class="pricing__btn">Start Your Free Trial Of MailFunnels Here</a>#}
+                <div class="popup" id="main-popup">
+                    <div class="popup__body">
+                        <form accept-charset="UTF-8" action="index.html" class="infusion-form" id="" method="POST">
+                            <div class="pricing-inform cf">
+                                <div class="subscr_count">
+                                    <h3>You are going to order: <br><span class="sub__current-val">500</span></h3>
+                                </div>
+                                <div class="pricing_count">
+                                    <span class="pricing__current-val">$9.99/-</span><br>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            {#<div class="progress_bar">#}
+                                {#<div class="progress_line">#}
+                                    {#<div id="progress_active">#}
+                                    {#</div>#}
+                                {#</div>#}
+                            {#</div>#}
+                            <!-- <div class="popup_titles">
+
+                            </div> -->
+                            <div class="popup__content">
+                                <h2 class="popup_head_title">CREATE YOUR ACCOUNT NOW</h2>
+                                <h3 class="popup__title">Enter your name and best email address so we can get started!</h3>
+                                <div class="popup__form" id="form-0">
+                                    <input name="inf_form_xid" type="hidden" value="c4e9550020cb631afdcc4caec8493478" />
+                                    <input name="inf_form_name" type="hidden" value="Mailfunnels &#a; Free Trial Cart Abandonment" />
+                                    <input name="infusionsoft_version" type="hidden" value="1.68.0.71" />
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" placeholder="First Name" id="inf_field_FirstName" name="inf_field_FirstName" type="text" />
+                                    </div>
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" id="inf_field_LastName" name="inf_field_LastName" placeholder="Last Name *" type="text" />
+                                    </div>
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" placeholder="Email" id="inf_field_Email" name="inf_field_Email" type="text" />
+                                    </div>
+                                </div>
+
+                                <div class="popup__form" id="form-1000">
+                                    <input name="inf_form_xid" type="hidden" value="2e70a344c890c31c0dcdd224e2074656" />
+                                    <input name="inf_form_name" type="hidden" value="MailFunnels Up to 1,000 Subscribers~br~CA" />
+                                    <input name="infusionsoft_version" type="hidden" value="1.68.0.71" />
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" placeholder="First Name" id="inf_field_FirstName" name="inf_field_FirstName" type="text" />
+                                    </div>
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" id="inf_field_LastName" name="inf_field_LastName" placeholder="Last Name *" type="text" />
+                                    </div>
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" placeholder="Email" id="inf_field_Email" name="inf_field_Email" type="text" />
+                                    </div>
+                                </div>
+
+                                <div class="popup__form" id="form-2000">
+                                    <input name="inf_form_xid" type="hidden" value="430b322d9433d1fbb6aa8ffccb894552" />
+                                    <input name="inf_form_name" type="hidden" value="MailFunnels Up to 2,000 Subscribers&#a;CA" />
+                                    <input name="infusionsoft_version" type="hidden" value="1.68.0.71" />
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" placeholder="First Name" id="inf_field_FirstName" name="inf_field_FirstName" type="text" />
+                                    </div>
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" id="inf_field_LastName" name="inf_field_LastName" placeholder="Last Name *" type="text" />
+                                    </div>
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" placeholder="Email" id="inf_field_Email" name="inf_field_Email" type="text" />
+                                    </div>
+                                </div>
+
+                                <div class="popup__form" id="form-4000">
+                                    <input name="inf_form_xid" type="hidden" value="637a51bc25f390b2d5d1ecaacece619b" />
+                                    <input name="inf_form_name" type="hidden" value="MailFunnels Up to 4,000 Subscribers&#a;CA" />
+                                    <input name="infusionsoft_version" type="hidden" value="1.68.0.71" />
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" placeholder="First Name" id="inf_field_FirstName" name="inf_field_FirstName" type="text" />
+                                    </div>
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" id="inf_field_LastName" name="inf_field_LastName" placeholder="Last Name *" type="text" />
+                                    </div>
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" placeholder="Email" id="inf_field_Email" name="inf_field_Email" type="text" />
+                                    </div>
+                                </div>
+
+                                <div class="popup__form" id="form-8000">
+                                    <input name="inf_form_xid" type="hidden" value="d33579524a4e680dc72737b307a00801" />
+                                    <input name="inf_form_name" type="hidden" value="MailFunnels Up to 8,000 Subscribers&#a;CA" />
+                                    <input name="infusionsoft_version" type="hidden" value="1.68.0.71" />
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" placeholder="First Name" id="inf_field_FirstName" name="inf_field_FirstName" type="text" />
+                                    </div>
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" id="inf_field_LastName" name="inf_field_LastName" placeholder="Last Name *" type="text" />
+                                    </div>
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" placeholder="Email" id="inf_field_Email" name="inf_field_Email" type="text" />
+                                    </div>
+                                </div>
+
+                                <div class="popup__form" id="form-12000">
+                                    <input name="inf_form_xid" type="hidden" value="c8b4e35684b815c037ebfb4ac2875260" />
+                                    <input name="inf_form_name" type="hidden" value="MailFunnels Up to 12,000 Subscribers&#a;CA" />
+                                    <input name="infusionsoft_version" type="hidden" value="1.68.0.71" />
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" placeholder="First Name" id="inf_field_FirstName" name="inf_field_FirstName" type="text" />
+                                    </div>
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" id="inf_field_LastName" name="inf_field_LastName" placeholder="Last Name *" type="text" />
+                                    </div>
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" placeholder="Email" id="inf_field_Email" name="inf_field_Email" type="text" />
+                                    </div>
+                                </div>
+
+                                <div class="popup__form" id="form-20000">
+                                    <input name="inf_form_xid" type="hidden" value="8432755ca6b68d04f60d9e9a8f0be8df" />
+                                    <input name="inf_form_name" type="hidden" value="MailFunnels Up to 20,000 Subscribers&#a;CA" />
+                                    <input name="infusionsoft_version" type="hidden" value="1.68.0.71" />
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" placeholder="First Name" id="inf_field_FirstName" name="inf_field_FirstName" type="text" />
+                                    </div>
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" id="inf_field_LastName" name="inf_field_LastName" placeholder="Last Name *" type="text" />
+                                    </div>
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" placeholder="Email" id="inf_field_Email" name="inf_field_Email" type="text" />
+                                    </div>
+                                </div>
+
+                                <div class="popup__form" id="form-35000">
+                                    <input name="inf_form_xid" type="hidden" value="fe49e09742ae76384e40b276fb85fd3a" />
+                                    <input name="inf_form_name" type="hidden" value="MailFunnels Up to 35,000 Subscribers&#a;CA" />
+                                    <input name="infusionsoft_version" type="hidden" value="1.68.0.71" />
+                                    <div class="infusion-field">
+                                        <!-- <label for="inf_field_FirstName"> *</label> -->
+                                        <input class="infusion-field-input-container" placeholder="First Name" id="inf_field_FirstName" name="inf_field_FirstName" type="text" />
+                                    </div>
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" id="inf_field_LastName" name="inf_field_LastName" placeholder="Last Name *" type="text" />
+                                    </div>
+                                    <div class="infusion-field">
+                                        <!-- <label for="inf_field_Email">Email *</label> -->
+                                        <input class="infusion-field-input-container" placeholder="Email" id="inf_field_Email" name="inf_field_Email" type="text" />
+                                    </div>
+                                </div>
+                                <div class="modal-info">
+                                    - all fields are required
+                                </div>
+                            </div>
+                            <div class="popup__btns">
+                                <div class="infusion-submit">
+                                    <button type="submit">Create My MailFunnels Account Now!</button>
+                                </div>
+                                <a href="index.html#" class="popup__cancel">Close</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="popup" id="free-popup">
+                    <div class="popup__body">
+                        <form accept-charset="UTF-8" action="index.html" class="infusion-form" id="" method="POST">
+                            <div class="pricing-inform cf">
+                                <div class="subscr_count">
+                                    <h3>You are going to order: <br><span class="sub__current-val">500<span></h3>
+                                </div>
+                                <div class="pricing_count">
+                                    <span class="pricing__current-val">Free</span><br>
+                                </div>
+                            </div>
+                            <div class="progress_bar">
+                                <p>Almost Complete</p>
+                                <div class="progress_line">
+                                    <div id="progress_active">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="popup_titles">
+
+                            </div> -->
+                            <div class="popup__content">
+                                <h2 class="popup_head_title">CREATE YOUR ACCOUNT NOW</h2>
+                                <h3 class="popup__title">Enter your name and best email address so we can get started!</h3>
+                                <div class="popup__form" id="form-0">
+                                    <input name="inf_form_xid" type="hidden" value="c4e9550020cb631afdcc4caec8493478" />
+                                    <input name="inf_form_name" type="hidden" value="Mailfunnels &#a; Free Trial Cart Abandonment" />
+                                    <input name="infusionsoft_version" type="hidden" value="1.68.0.71" />
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" placeholder="First Name" id="inf_field_FirstName" name="inf_field_FirstName" type="text" />
+                                    </div>
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" id="inf_field_LastName" name="inf_field_LastName" placeholder="Last Name *" type="text" />
+                                    </div>
+                                    <div class="infusion-field">
+                                        <input class="infusion-field-input-container" placeholder="Email" id="inf_field_Email" name="inf_field_Email" type="text" />
+                                    </div>
+                                </div>
+                                <div class="modal-info">
+                                    - all fields are required
+                                </div>
+                            </div>
+                            <div class="popup__btns">
+                                <div class="infusion-submit">
+                                    <button type="submit">Create My MailFunnels Account Now!</button>
+                                </div>
+                                <a href="index.html#" class="popup__cancel">Close</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+</section>
+
+<section id="faq" class="faq-2 section section--padding__wmargin section--gradient__4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="question">
+                    <h5>Is MailFunnels only for Shopify?</h5>
+                    <p>Yes, at this time MailFunnels is only for Shopify! We have no plans on serving any other platforms at this current time because we LOVE to focus on Shopify and believe that it's the BEST platform and we want to cater to all Shopify users to create a platform like no one has ever seen.</p>
+                </div>
+                <div class="question">
+                    <h5>How cany contacts can I have?</h5>
+                    <p>That is very dependent on your package that you choose. Everyone can start off with 500 and scale all the way up to 5 million if you see fit! It is really up to you!</p>
+                </div>
+                <div class="question">
+                    <h5>Is this only for cart abandonment?</h5>
+                    <p>We DO offer cart abandonment but we don’t stop there! We also allow post purchase email campaigns, when a customer refunds you can start a ‘win back’ campaign, and you can have ANYTHING happen when a customer takes a specific action on any product in your store (and yes you can even choose the product).</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="question">
+                    <h5>Can I build my own emails?</h5>
+                    <p>Yes! We have an email builder that you will LOVE to use. The easy to use, drag and drop interface gives you the ability to create stunning emails that your customers will LOVE to read and… they ACTUALLY get delivered and don’t end up on the spam folder.</p>
+                </div>
+                <div class="question">
+                    <h5>Do you have any support?</h5>
+                    <p>We offer Live Support between the hours of 9AM EST - 5PM EST Monday - Saturday. We offer live skype support during the same time. Phone support if you need to get someone on the phone we have you covered. Also, we offer email support in case you wanted to reach us via email. Email support@mailfunnels.com for all general inquiries and a swift response!</p>
+                </div>
+                <div class="question">
+                    <h5>Can I have more than one store per account?</h5>
+                    <p>No. Each account you create is unique to 1 store and we set it up that way for your customers sake so they don’t get emails from 500 different stores. It's a protection for you and your brands!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-4 section--gradient__3">
+    <div class="footer__top section section--padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <img src="{{ asset('images/logos/mf-logo-text-white.png') }}" alt="" class="footer__logo img-fluid">
+                </div>
+                <div class="preamble preamble--light mb-4 col-lg-10 offset-lg-1">
+                    <h3 class="title">Everything you need<br> to revolutionize your store</h3>
+                    <p class="lead">Click the button below to begin your 14 day free trial instantly with the ability to cancel at anytime!</p>
+                    <a href="#" class="btn btn--green btn--lg mb-0 mt-4 d-inline-flex align-items-center">Start Free Trial<i class="icon icon-Right ml-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer__bottom">
+        <div class="container">
+            <div class="row">
+                <div class="footer__feature col-md-6 text-center text-lg-left">
+                    <h5 class="color--white">&nbsp;</h5>
+                    <p>Copyright © 2018 <a href="http://www.mailfunnels.com" target="_blank">MailFunnels</a>. All rights reserved.</p>
+                </div>
+                <div class="footer__feature col-lg-3 col-md-6 text-center text-lg-left">
+
+                </div>
+                <div class="footer__feature col-lg-3 col-md-6 text-center text-lg-left">
+                    <h5 class="color--white">Contact Us</h5>
+                    <p>
+                        <a class="mf-footer-social-link" href="https://www.facebook.com/groups/1899392843717613/" target="_blank"><i class="socicon-facebook"></i></a>
+                        <a class="mf-footer-social-link" href="https://www.facebook.com/groups/1899392843717613/" target="_blank"><i class="socicon-mail"></i></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div class="modal fade" id="newsletterModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-body">
+                <div class="row no-gutters">
+                    <div class="modal-body__image col-md-5"></div>
+                    <div class="modal-body__content col-md-7">
+                        <div class="d-flex justify-content-center">
+                            <div class="col-lg-9 col-md-8">
+                                <div class="preamble text-left mb-5">
+                                    <h3 class="title">Get Started in Minutes!</h3>
+                                    <p class="lead">Your next 14 days of emails are on us! Sign up below to begin your free trial with MailFunnels instantly with the ability to cancel at anytime.</p>
+                                </div>
+                                <form action="#" class="modal__form">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Your Name" class="form-control modal__form--input" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" placeholder="Your Email" class="form-control modal__form--input" required>
+                                    </div>
+                                    <div class="form-group justify-content-center d-flex mt-3 mb-0">
+                                        <button class="btn btn--blue btn--lg w-100 modal__form--btn">Join Newsletter Now</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ asset('landing_assets/js/main.js') }}"></script>
+<script src="{{ asset('landing_assets/js/scripts.js') }}"></script>
+<script src="{{ asset('landing_assets/js/custom.js') }}"></script>
+</body>
+</html>

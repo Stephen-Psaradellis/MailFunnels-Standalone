@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Dashboard{% endblock %}
+
+
+{% block body %}
+    <div class="invisible">
+        <input id="shopify_auth_url" type="text" value="{{ auth_url }}"/>
+        <input id="shopify_short_url" type="text" value="{{ short_url }}"/>
+        <input id="shopify_auth_code" type="text" value="{{ code }}"/>
+        <input id="shopify_api" type="text" value="{{ shopify_api_key }}"/>
+        <input id="shopify_secret" type="text" value="{{ shopify_api_secret }}"/>
+    </div>
+
+    <div class="row">
+
+            <div class="col-lg-4 mx-auto pt-5 mt-5">
+                <div class="auth-form-transparent text-left p-5 text-center">
+                    <i class="mf-icon-shopify-green text--4x"></i>
+                    <hr/>
+                    <h4 id="shop-integrate-text" class="pb-3">Connecting to Shopify...</h4>
+                    <div id="shop-integrate-loader" class="load1 p-t-0 m-t-0">
+                        <div class="loader p-t-0 mt-4"></div>
+                    </div>
+                    <div id="shop-integrate-complete" class="mt-5 invisible">
+                        <i class="fa fa-check-circle text-primary text--4x mb-4"></i>
+                        <a class="btn btn-block btn-primary btn-lg font-weight-medium" href="{{ path('homepage') }}">Back to Dashboard</a>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+    <script src="{{ asset('js/shopify/auth_tokens.js') }}"></script>
+{% endblock %}
+
+

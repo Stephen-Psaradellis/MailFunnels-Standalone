@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8;">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MailFunnels | {% block title %}{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    <!-- Plugin/Vendor CSS -->
+    <link href='//fonts.googleapis.com/css?family=Raleway:500,900,200' rel='stylesheet' type='text/css'>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('mf-v1/plugins/css/nprogress.css') }}">
+    <link rel="stylesheet" href="{{ asset('mf-v1/plugins/css/jquery-ui.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('mf-v1/fonts/font-awesome.min.css') }}">
+
+    <!-- Plugin/Vendor JS -->
+    <script src="{{ asset('mf-v1/plugins/js/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('mf-v1/plugins/js/jquery-ui.min.js') }}" type="text/javascript"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- MailFunnels CSS -->
+    <link rel="stylesheet" href="{{ asset('mf-v1/plugins/css/blue.css') }}">
+    <link rel="stylesheet" href="{{ asset('mf-v1/css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('mf-v1/css/mailfunnels.css') }}">
+
+    <!-- MailFunnels JS -->
+    <script src="{{ asset('mf-v1/js/custom.js') }}" type="text/javascript"></script>
+
+
+
+
+    {% block stylesheets %}{% endblock %}
+</head>
+
+
+<body class="nav-sm">
+<div class="container body">
+    <div class="main_container">
+
+        <!-- START SIDE NAV BAR -->
+        <!-- ~~~~~~~~~~~~~~~~~~ -->
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="#" class="site_title"><i class="fa fa-envelope-o"></i> <span>MailFunnels</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <br>
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section active">
+                        <h3>General</h3>
+                        <ul class="nav side-menu" style="">
+                            <li><a href="#"><i class="fa fa-home"></i> Dashboard <span class="fa fa-chevron-down"></span></a>
+                            </li>
+                            <li><a href="#funnels"><i class="fa fa-edit"></i> Funnel Builder <span class="fa fa-chevron-down"></span></a>
+                            </li>
+                            <li><a href="#triggers"><i class="fa fa-tags"></i> Triggers <span class="fa fa-chevron-down"></span></a>
+                            </li>
+                            <li><a href="#email_templates"><i class="fa fa-envelope"></i> Email Builder<span class="fa fa-chevron-down"></span></a>
+                            </li>
+                            <li><a href="#lists"><i class="fa fa-list-ul"></i> Email Lists <span class="fa fa-chevron-down"></span></a>
+                            </li>
+                            <li><a href="#broadcasts"><i class="fa fa-send-o"></i> Broadcasts <span class="fa fa-chevron-down"></span></a>
+                            </li>
+                            <li><a href="#account"><i class="fa fa-user"></i> My Account <span class="fa fa-chevron-down"></span></a>
+                            </li>
+                            <li><a href="#support"><i class="fa fa-question-circle"></i> Support <span class="fa fa-chevron-down"></span></a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+            </div>
+        </div>
+        <!-- ~~~~~~~~~~~~~~~~ -->
+        <!-- END SIDE NAV BAR -->
+
+
+        <!-- START MAIN CONTENT -->
+        <!-- ~~~~~~~~~~~~~~~~~~ -->
+        <div class="right_col" role="main">
+            <div class="row">
+
+                {% block body %}{% endblock %}
+
+            </div>
+        </div>
+        <!-- ~~~~~~~~~~~~~~~~ -->
+        <!-- END MAIN CONTENT -->
+
+
+        <div class="clearfix"></div>
+
+
+    </div>
+</div>
+
+{% block javascripts %}{% endblock %}
+
+</body>
+
+</html>

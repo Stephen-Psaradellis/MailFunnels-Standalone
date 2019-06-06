@@ -1,0 +1,146 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Funnels{% endblock %}
+
+
+{% block body %}
+    <div class="row">
+        <div class="col-12">
+            <button class="btn btn-inverse-primary btn-rounded btn-sm pull-right float-right" type="button" data-toggle="modal" data-target="#newFunnelModal"><i class="fa fa-plus"></i> New Funnel</button>
+            <div>
+                <h4 class="text-primary m-b-0 p-b-0 text-semibold">My Funnels</h4>
+                <p class="text-muted p-t-0 m-t-0">You have <b class="text-primary m-t-0">{{ funnelUserLinks | length }}</b> funnels</p>
+                <div class="clearfix"></div>
+                <hr/>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for funnelUserLink in funnelUserLinks %}
+            <div class="col-12 col-lg-4 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h4 class="card-item-title mb-0">{{ funnelUserLink.funnel.name }}</h4>
+                        <p class="text-sm m-t-0 m-b-0"><strong class="m-b-0">Created: </strong>{{ funnelUserLink.funnel.dateCreated | ago }}</p>
+                        <div class="text-center" style="margin-top: 0 !important; padding-top: 0 !important;">
+                            {% if funnelUserLink.funnel.active == 1 %}
+                                <label class="badge badge-outline-success m-t-0 m-b-0">Active</label>
+                            {% else %}
+                                <label class="badge badge-outline-danger m-t-0 m-b-0">Inactive</label>
+                            {% endif %}
+                        </div>
+                        <div class="card-text text-left">
+                            <hr/>
+                            <p class="mb-1"><strong>Product: </strong> Any Product</p>
+                            <p class=""><b>Description:</b> {{ funnelUserLink.funnel.description }}</p>
+                            <hr/>
+                        </div>
+                        <h5 class="mb-0">$0.00</h5>
+                        <p>Revenue</p>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <a href="{{ path('funnel_builder', {funnelUserLinkID: funnelUserLink.id}) }}"  class="btn btn-primary icon-btn" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Edit"><i class="fa fa-edit icon--1-5x"></i></a>
+                            {% if funnelUserLink.funnel.active == 1 %}
+                                <a id="funnel_deactivate_button" href="#" class="btn btn-secondary icon-btn mf-clone-template" data-toggle="tooltip" data-placement="bottom" title="" data-id="{{ funnelUserLink.funnel.id }}" data-original-title="Deactivate"><i class="fa fa-times-circle text-danger icon--1-5x"></i></a>
+                            {% else %}
+                                <a id="funnel_activate_button" href="#" class="btn btn-secondary icon-btn mf-clone-template" data-toggle="tooltip" data-placement="bottom" title="" data-id="{{ funnelUserLink.funnel.id }}" data-original-title="Activate"><i class="fa fa-check-circle text-success icon--1-5x"></i></a>
+                            {% endif %}
+                            <a href="#"  class="btn btn-danger icon-btn delete_funnel_button" data-toggle="tooltip" data-placement="bottom" title="" data-id="{{ funnelUserLink.id }}"data-original-title="Delete"><i class="fa fa-trash-o icon--1-5x"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock body %}
+    {% block modals %}
+        <!--BEGIN NEW FUNNEL MODAL--->
+        <div id="newFunnelModal" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header mb-0">
+                        <h5 class="modal-title" id="exampleModalLabel">Create Funnel</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+                    </div>
+
+                    <div class="modal-body mt-0">
+                        <form class="mt-0">
+                            <div class="form-group">
+                                <label class="control-label">Funnel Name</label>
+                                <input id="funnel_name_input" type="text" class="form-control" placeholder="Funnel Name"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Funnel Description</label>
+                                <textarea id="funnel_description_input" class="form-control" rows="3" placeholder="Description for funnel"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Funnel Hook</label>
+                                <select class="form-control" id="funnel_trigger_select">
+                                    <option value="">Select Hook for funnel</option>
+                                    <option value="0">Product Purchase</option>
+                                    <option value="1">Product Refund</option>
+                                    <option value="2">Cart Abandonment</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Email List</label>
+                                <select class="form-control" id="funnel_email_list_select">
+                                    <option value="0">Create New Email List</option>
+                                    {% for emailListUserLink in emailListUserLinks %}
+                                        <option value="{{ emailListUserLink.emailList.id }}">{{ emailListUserLink.emailList.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <hr/>
+                            <div class="float-right">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="reset" class="btn btn-primary">Reset</button>
+                                <button id="new_funnel_submit_button" type="button" class="btn btn-success">Submit</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!---END NEW FUNNEL MODAL--->
+
+        <!---START CONFIRM DELETE FUNNEL MODAL--->
+        <div id="confirm_delete_modal" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Confirm Funnel Delete</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <h4>Are you sure you want to delete this funnel?</h4>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        <button id="confirm_delete_funnel_button" type="button" class="btn btn-success">Confirm</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!---END CONFIRM DELETE FUNNEL MODAL--->
+
+    {% endblock modals %}
+
+
+
+{% block javascripts %}
+    <script src="{{ asset('js/pages/Funnels/funnels.js') }}"></script>
+{% endblock javascripts %}
+
+
+

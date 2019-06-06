@@ -1,0 +1,205 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="invisible">
+        <input id="email_list_user_link_id" type="number" value="{{ emailList.id }}"/>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-lg-12 mb-4">
+            <button class="btn btn-inverse-primary btn-rounded btn-sm pull-right" type="button" data-toggle="modal"
+                    data-target="#newSubscriberModal"><i class="fa fa-plus"></i> Add Subscriber
+            </button>
+            <button class="btn btn-inverse-primary btn-rounded btn-sm pull-right" type="button" data-toggle="modal"
+                    data-target="#import_csv_modal"><i class="fa fa-plus"></i> Import CSV
+            </button>
+            <button
+                    id="subscribers_export_button" class="btn btn-inverse-primary btn-rounded btn-sm pull-right" type="button"><i class="fa fa-plus"></i> Export CSV
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Subscribers for {{ emailList.name }}</h4>
+                    <div class="row">
+                        <div class="table-sorter-wrapper col-12 table-responsive">
+                            <table id="subscribers_table" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th class="sortStyle">Name<i class="mdi mdi-chevron-down"></i></th>
+                                    <th class="sortStyle">Email Address<i class="mdi mdi-chevron-down"></i></th>
+                                    <th class=""></th>
+                                    <th class=""></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for subscriberEmailListLink in subscriberEmailListLinks %}
+                                    <tr>
+                                        <td>{{ subscriberEmailListLink.subscriber.firstName }} {{ subscriberEmailListLink.subscriber.lastName }}
+                                        </td>
+                                        <td>
+                                            {{ subscriberEmailListLink.subscriber.email }}
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary">View</button>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger delete_subscriber_button"
+                                                    data-id="{{ emailListUserLink.id }}">Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+    {% block modals %}
+
+
+        <!-- START NEW EMAIL LIST MODAL -->
+        <!-- ~~~~~~~~~~~~~~~~~~ -->
+        <div id="newSubscriberModal" class="modal fade">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-primary" id="exampleModalLabel-2">Add Subscriber to {{ emailList.name }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <form>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="subscriber_first_name_input">First Name</label>
+                                <input id="subscriber_first_name_input" type="text" class="form-control" placeholder="First Name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subscriber_last_name_input">Last Name</label>
+                                <input id="subscriber_last_name_input" type="text" class="form-control" placeholder="Last Name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subscriber_email_address_input">Email Address</label>
+                                <input id="subscriber_email_address_input" type="text" class="form-control" placeholder="Email Address">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="reset" class="btn btn-primary">Reset</button>
+                            <button id="new_subscriber_submit_button" type="button" class="btn btn-success">Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- ~~~~~~~~~~~~~~~~ -->
+        <!-- END NEW EMAIL LIST MODAL -->
+
+        <!-- START CONFIRM DELETE MODAL -->
+        <!-- ~~~~~~~~~~~~~~~~~~ -->
+        <div id="confirm_delete_modal" class="modal fade bs-example-modal-sm">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Confirm Template Delete</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <h4>Are you sure you want to delete this template?</h4>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        <button id="confirm_delete_subscriber_button" type="button" class="btn btn-success">Confirm
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- ~~~~~~~~~~~~~~~~ -->
+        <!-- END CONFIRM DELETE MODAL -->
+
+        <!--- Start Import Csv Modal --->
+        <div id="import_csv_modal" class="modal fade bs-example-modal-sm">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Import CSV</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-xs-12">
+
+                                <div id="file-area" class="file-area">
+                                    <input type="file" name="import_csv_file" id="import_csv_file" required="required"/>
+                                    <div class="file-dummy">
+                                        {#<div class="success">Great, we found <strong id="csv_num_subs">12</strong> subscribers in this file, check the box below and click the "import" button to continue.</div>#}
+                                        <div class="default-file">Please select a CSV file to upload</div>
+                                    </div>
+                                </div>
+
+                                <br/>
+
+                            </div>
+                        </div>
+
+                        <div id="mf_load_spinner" class="hidden">
+                            <h2 class="text-center"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></h2>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group pull-left">
+                                    <div class="col-xs-12">
+                                        <label for="import_csv_confirm_checkbox"><input id="import_csv_confirm_checkbox" type="checkbox" value=""/><span></span>Subscribers gave me permission to be added to my list.</label>
+                                    </div>
+                                </div>
+                                <button type="button" id="import_csv_submit_button" class="btn btn-success btn-sm pull-right">Import</button>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!--- End Import Csv Modal --->
+
+    {% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/pearl/jq.tablesort.js') }}"></script>
+    <script src="{{ asset('js/pearl/tablesorter.js') }}"></script>
+    <script src="{{ asset('mf-v1/plugins/js/papaparse.min.js') }}"></script>
+    <script src="{{ asset('mf-v1/plugins/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('mf-v1/plugins/css/dataTables.bootstrap.min.css') }}"></script>
+    <script src="{{ asset('mf-v1/plugins/js/jquery.tabletoCSV.js') }}"></script>
+    <script src="{{ asset('js/pages/EmailLists/view_email_list.js') }}"></script>
+{% endblock %}

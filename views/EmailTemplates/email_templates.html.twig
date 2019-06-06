@@ -1,0 +1,178 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Email Templates{% endblock %}
+
+{% block stylesheets %}
+
+    <link rel="stylesheet" href="{{ asset('plugins/icheck/skins/all.css') }}">
+
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-12">
+            <button class="btn btn-inverse-primary btn-rounded btn-sm pull-right" type="button" data-toggle="modal" data-target="#newEmailTemplateModal"><i class="fa fa-plus"></i> New Template</button>
+            <div>
+                <h4 class="text-primary m-b-0 p-b-0 text-semibold">Email Templates</h4>
+                <p class="text-muted p-t-0 m-t-0"><b class="text-primary m-t-0">{{ templateLinks | length }}</b> Templates</p>
+                <div class="clearfix"></div>
+                <hr/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {% for templateLink in templateLinks %}
+            <div class="col-12 col-lg-3 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h4 class="card-item-title m-b-0">{{ templateLink.emailTemplate.name }}</h4>
+                        <p class="text-muted m-t-0">Created: <b>{{ templateLink.emailTemplate.dateCreated | ago }}</b></p>
+
+                        <div class="card-text text-left">
+                            <hr/>
+                            <p class="mt-4 mb-1"><strong>Email Subject:</strong> {{ templateLink.emailTemplate.emailSubject }}</p>
+                            <p><strong>Description:</strong> {{ templateLink.emailTemplate.description }}</p>
+                            <hr/>
+                        </div>
+
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <a href="{{ path('template_builder', {templateId: templateLink.emailTemplate.id}) }}"  class="btn btn-primary icon-btn" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Edit"><i class="fa fa-edit icon--1-5x"></i></a>
+                            <a href="#" class="btn btn-secondary icon-btn mf-clone-template" data-toggle="tooltip" data-placement="bottom" title="" data-id="{{ templateLink.emailTemplate.id }}" data-original-title="Clone"><i class="fa fa-copy icon--1-5x"></i></a>
+                            <a href="#"  class="btn btn-danger icon-btn delete_template_button" data-toggle="tooltip" data-placement="bottom" title="" data-id="{{ templateLink.emailTemplate.id }}"data-original-title="Delete"><i class="fa fa-trash-o icon--1-5x"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock body %}
+
+{% block modals %}
+    <!-- START CONFIRM DELETE MODAL -->
+    <!-- ~~~~~~~~~~~~~~~~~~ -->
+    <div id="confirm_delete_modal" class="modal">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Confirm Template Delete</h4>
+                </div>
+
+                <div class="modal-body">
+                    <h4>Are you sure you want to delete this template?</h4>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button id="confirm_delete_template_button" type="button" class="btn btn-success">Confirm</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ~~~~~~~~~~~~~~~~ -->
+    <!-- END CONFIRM DELETE MODAL -->
+
+    <!-- START NEW EMAIL TEMPLATE MODAL -->
+    <!-- ~~~~~~~~~~~~~~~~~~ -->
+    <div id="newEmailTemplateModal" class="modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel-2">New Email Template</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form>
+                <div class="modal-body">
+                        <div class="form-group">
+                            <label for="template_name_input">Template Name</label>
+                            <input id="template_name_input" type="text" class="form-control" placeholder="Name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="template_description_input">Template Description</label>
+                            <textarea id="template_description_input" class="form-control" rows="3" placeholder="Description for email template"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="template_email_subject_input">Email Subject</label>
+                            <input id="template_email_subject_input" type="text" class="form-control" placeholder="Email Subject">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="reset" class="btn btn-primary">Reset</button>
+                    <button id="new_template_submit_button" type="button" class="btn btn-success">Submit</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- ~~~~~~~~~~~~~~~~ -->
+    <!-- END NEW EMAIL TEMPLATE MODAL -->
+
+
+
+
+    <!-- START CLONE TEMPLATE MODAL -->
+    <div id="mf-clone-template-modal" class="modal">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Clone Template</h4>
+                </div>
+
+                <form class="form-horizontal form-label-left">
+
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Template Name</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input id="mf_clone_name_input" type="text" class="form-control" placeholder="Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Template Description</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <textarea id="mf_clone_description_input" class="form-control" rows="3" placeholder="Description for email template"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Email Subject</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input id="mf_clone_subject_input" type="text" class="form-control" placeholder="Email Subject">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button id="mf_clone_submit_button" type="button" class="btn btn-success" data-id="0">Submit</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+
+    <!-- iCheck JS -->
+    <script src="{{ asset('plugins/icheck/iCheck.js') }}"></script>
+
+    <!-- JS For EmailTemplates Page -->
+    <script src="{{ asset('js/pages/EmailTemplates/email_templates.js') }}"></script>
+{% endblock %}

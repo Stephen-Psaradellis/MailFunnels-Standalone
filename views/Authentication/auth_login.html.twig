@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MailFunnels | Login</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{{ asset('plugins/iconfonts/mdi/css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/iconfonts/puse-icons-feather/feather.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/css/vendor.bundle.base.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/css/vendor.bundle.addons.css') }}">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+
+    <style>
+        #loader {
+            transition: all 0.3s ease-in-out;
+            opacity: 1;
+            visibility: visible;
+            position: fixed;
+            height: 100vh;
+            width: 100%;
+            background: #fff;
+            z-index: 90000;
+        }
+
+        #loader.fadeOut {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /*.spinner {*/
+            /*width: 70px;*/
+            /*height: 70px;*/
+            /*position: absolute;*/
+            /*top: calc(50% - 20px);*/
+            /*left: calc(50% - 20px);*/
+            /*background-color: #2196f4;*/
+            /*border-radius: 100%;*/
+            /*-webkit-animation: sk-scaleout 1.5s infinite ease-in-out;*/
+            /*animation: sk-scaleout 1.5s infinite ease-in-out;*/
+        /*}*/
+
+        .loader-logo {
+            width: 70px;
+            height: 70px;
+            position: absolute;
+            top: calc(50% - 20px);
+            left: calc(50% - 20px);
+            background-color: #2196f4;
+            border-radius: 100%;
+            -webkit-animation: sk-scaleout 3s infinite ease-in-out;
+            animation: sk-scaleout 1.5s infinite ease-in-out;
+        }
+
+        .loader-logo img {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: calc(50% - 20px);
+            left: calc(50% - 20px);
+            background-color: #2196f4;
+            border-radius: 100%;
+            /*-webkit-animation: sk-scaleout 3s infinite ease-in-out;*/
+            /*animation: sk-scaleout 3s infinite ease-in-out;*/
+        }
+
+        @-webkit-keyframes sk-scaleout {
+            0% { -webkit-transform: scale(0) }
+            100% {
+                -webkit-transform: scale(1.0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes sk-scaleout {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            } 100% {
+                  -webkit-transform: scale(1.0);
+                  transform: scale(1.0);
+                  opacity: 0;
+              }
+        }
+    </style>
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/mf-auth.css') }}">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+</head>
+
+<body>
+
+<script>
+    window.addEventListener('load', () => {
+        const loader = document.getElementById('loader');
+    setTimeout(() => {
+        loader.classList.add('fadeOut');
+    }, 400);
+    });
+</script>
+
+<div id="bg1"></div>
+<div id="bg2"></div>
+
+<div id="particleGenerator"></div>
+
+<div id='loader'>
+    <div class="loader-logo">
+        <img src="{{ asset('images/logos/MF_LOGO_WHITE.png') }}"/>
+    </div>
+</div>
+
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth">
+
+            <div class="row w-100">
+                <div class="col-lg-8 mx-auto">
+                    <div class="row">
+                        <div class="col-lg-6 mx-auto">
+                            <div class="auth-form-dark text-left p-5">
+
+                                <div class="text-center">
+                                    <img class="mf-auth-header-logo mb-5" src="{{ asset('mf-v1/images/mf-logo-text-white.png') }}"/>
+                                    {#<h2>Login</h2>#}
+                                    {#<p class="font-weight-light mt-5">Welcome Back! Sign In below to get started.</p>#}
+                                </div>
+
+                                {% block content %}
+
+                                {% endblock %}
+
+                                {#<div class="mt-2 text-center">#}
+                                    {#<a href="{{ path('fos_user_resetting_request') }}" class="auth-link text-white">Forgot Password?</a>#}
+                                {#</div>#}
+
+                                <div class="mt-2 text-center">
+                                    <a href="{{ path('fos_user_registration_register') }}" class="auth-link text-white">Create Account</a>
+                                </div>
+                            </div>
+                            <p class="text-white font-weight-medium text-center flex-grow align-self-end p-2">Copyright &copy; 2018  All rights reserved.</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+<!-- plugins:js -->
+<script src="{{ asset('plugins/js/vendor.bundle.base.js') }}"></script>
+<script src="{{ asset('plugins/js/vendor.bundle.addons.js') }}"></script>
+<!-- endinject -->
+
+<!-- inject:js -->
+<script src="{{ asset('js/pearl/off-canvas.js') }}"></script>
+<script src="{{ asset('js/pearl/hoverable-collapse.js') }}"></script>
+<script src="{{ asset('js/pearl/misc.js') }}"></script>
+<script src="{{ asset('js/pearl/settings.js') }}"></script>
+<script src="{{ asset('js/pages/Authentication/auth.js') }}"></script>
+<!-- endinject -->
+</body>
+
+</html>
+
+
+
+
+
